@@ -19,6 +19,8 @@ use App\Notification;
 use App\Workshop;
 Use App\Coupon;
 use App\Rating;
+use App\Course_order;
+use App\Course_order_product;
 use Session;
 use DB;
 use Auth;
@@ -445,17 +447,34 @@ class FrontendController extends Controller
 
     public function profile()
     {
-        $cart = Cart::all();
-        $disp = Navbar::all();
-        $data= DB::table('course_orders')->join('course_order_products','course_orders.user_id','course_order_products.user_id')->get();
+        $disp= Navbar::all();
+        $cart= Cart::all();
+        $data= Course_order::all();
         return view('front.profile',Compact('disp','data','cart'));
     }
-    public function user_order_data()
+    public function user_order_data($user_id)
     {
-        $cart = Cart::all();
-        $disp = Navbar::all();
-        $data= DB::table('course_orders')->join('course_order_products','course_orders.user_id','course_order_products.user_id')->get();
+        $disp= Navbar::all();
+        $cart= Cart::all();
+        $data= Course_order::where('user_id',$user_id)->get();
         return view('front.user_order_data',Compact('disp','data','cart'));
+    }
+    public function view_order($id)
+    {
+        $course_user = Course_order::all();
+        $cart= Cart::all();
+        $disp= Navbar::all();
+        $data = Course_order_product::where('course_order_id',$id)->get();
+        return view('front.view_order',Compact('data','disp','course_user','cart'));
+
+    }
+     public function invoice($id)
+    {
+        $course_user = Course_order::all();
+        $cart= Cart::all();
+        $disp= Navbar::all();
+        $data = Course_order_product::where('course_order_id',$id)->get();
+        return view('front.invoice',compact('data','disp','course_user','cart'));
     }
 }
 

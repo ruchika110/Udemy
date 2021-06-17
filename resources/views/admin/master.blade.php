@@ -111,6 +111,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{url('admin/course_order')}}" class="nav-link">
+              <i class="far fa-circle nav-icon text-white"></i>
+              <p class="text-white">
+                Course Order
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{url('admin/courses')}}" class="nav-link">
               <i class="far fa-circle nav-icon text-white"></i>
               <p class="text-white">

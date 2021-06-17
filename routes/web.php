@@ -114,6 +114,11 @@ Route::get('admin/workshop/edit/{id}','WorkshopController@edit');
 Route::post('admin/workshop/update','WorkshopController@update');
 Route::get('admin/workshop/delete/{id}','WorkshopController@delete');
 
+Route::get('admin/course_order','AdminController@course_order');
+Route::get('admin/invoice/{id}','AdminController@invoice');
+Route::get('admin/view_order/{id}','AdminController@view_order');
+Route::post('admin/update_order_status/{id}','AdminController@update_order_status');
+
 });//middleware closed
 
 //Frontend Controller
@@ -213,11 +218,15 @@ Route::get('front/forgot_password','Frontendcontroller@forgot_password');
 
 //middleware
 Route::group(['middleware' =>['auth']],function(){
+
 //user order data
-Route::get('front/profile/user_order_data','FrontendController@user_order_data');
+Route::get('front/profile/user_order_data/{user_id}','FrontendController@user_order_data');
 
 //profile
 Route::get('front/profile','FrontendController@profile');
+Route::get('front/invoice/{id}','FrontendController@invoice');
+Route::get('front/view_order/{id}','FrontendController@view_order');
+
 });//middleware close
 
 
